@@ -14,14 +14,13 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @SpringBootApplication
-public class MongodbApplication {
+public class MongoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MongodbApplication.class, args);
+		SpringApplication.run(MongoApplication.class, args);
 	}
 
 	@Bean
@@ -46,21 +45,33 @@ public class MongodbApplication {
 					LocalDateTime.now()
 			);
 
-			Query query = new Query();
-			query.addCriteria(Criteria.where("email").is(student.getEmail()));
+//			usingMongoTemplateAndQuery(studentRepository, mongoTemplate, student);
 
-			List<Student> students = mongoTemplate.find(query, Student.class);
-
-			if (students.size() > 1) {
-				throw new IllegalStateException("Found one student or more with the same email");
-			}
-
-			if (students.isEmpty()) {
-				System.out.println("Inserting student: " + student);
-				studentRepository.insert(student);
-			} else {
-				System.out.println("Student already exists: " + student);
-			}
+			studentRepository.findStudentByEmail(student.getEmail())
+					.ifPresentOrElse(foundStudent -> {
+						System.out.println("Student already exists: " + foundStudent);
+					}, () -> {
+						System.out.println("Inserting student: " + student);
+						studentRepository.insert(student);
+					});
 		};
+	}
+
+	private static void usingMongoTemplateAndQuery(StudentRepository studentRepository, MongoTemplate mongoTemplate, Student student) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("email").is(student.getEmail()));
+
+		List<Student> students = mongoTemplate.find(query, Student.class);
+
+		if (students.size() > 1) {
+			throw new IllegalStateException("Found one student or more with the same email");
+		}
+
+		if (students.isEmpty()) {
+			System.out.println("Inserting student: " + student);
+			studentRepository.insert(student);
+		} else {
+			System.out.println("Student already exists: " + student);
+		}
 	}
 }
