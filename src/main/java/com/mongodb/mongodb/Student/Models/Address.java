@@ -1,4 +1,4 @@
-package com.mongodb.mongodb.Student;
+package com.mongodb.mongodb.Student.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
 package com.mongodb.mongodb;
 
-import com.mongodb.mongodb.Student.Address;
-import com.mongodb.mongodb.Student.Gender;
-import com.mongodb.mongodb.Student.Student;
+import com.mongodb.mongodb.Student.Models.Address;
+import com.mongodb.mongodb.Student.Models.Gender;
+import com.mongodb.mongodb.Student.Models.Student;
 import com.mongodb.mongodb.Student.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
@@ -41,8 +40,7 @@ public class MongoApplication {
 					Gender.MALE,
 					address,
 					List.of("Math", "Computer Science"),
-					BigDecimal.TEN,
-					LocalDateTime.now()
+					BigDecimal.TEN
 			);
 
 //			usingMongoTemplateAndQuery(studentRepository, mongoTemplate, student);

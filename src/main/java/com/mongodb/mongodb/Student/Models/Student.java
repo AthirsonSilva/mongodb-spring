@@ -1,4 +1,4 @@
-package com.mongodb.mongodb.Student;
+package com.mongodb.mongodb.Student.Models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -25,7 +25,7 @@ public class Student {
     private BigDecimal totalSpentInBooks;
     private LocalDateTime createdAt;
 
-    public Student(String firstName, String lastName, String email, String password, Gender gender, Address address, List<String> favoriteSubjects, BigDecimal totalSpentInBooks, LocalDateTime createdAt) {
+    public Student(String firstName, String lastName, String email, String password, Gender gender, Address address, List<String> favoriteSubjects, BigDecimal totalSpentInBooks) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,6 +34,6 @@ public class Student {
         this.address = address;
         this.favoriteSubjects = favoriteSubjects;
         this.totalSpentInBooks = totalSpentInBooks;
-        this.createdAt = createdAt;
+        this.createdAt = LocalDateTime.now();
     }
 }

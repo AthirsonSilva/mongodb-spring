@@ -1,5 +1,6 @@
 package com.mongodb.mongodb.Student;
 
+import com.mongodb.mongodb.Student.Models.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

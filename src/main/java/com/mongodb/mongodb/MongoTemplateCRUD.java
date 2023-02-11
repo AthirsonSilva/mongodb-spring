@@ -3,9 +3,9 @@
 package com.mongodb.mongodb;
 
 import com.mongodb.client.MongoClients;
-import com.mongodb.mongodb.Student.Address;
-import com.mongodb.mongodb.Student.Gender;
-import com.mongodb.mongodb.Student.Student;
+import com.mongodb.mongodb.Student.Models.Address;
+import com.mongodb.mongodb.Student.Models.Gender;
+import com.mongodb.mongodb.Student.Models.Student;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -41,8 +40,7 @@ public class MongoTemplateCRUD {
                         "10005"
                 ),
                 List.of("Math", "Computer Science"),
-                BigDecimal.TEN,
-                LocalDateTime.now()
+                BigDecimal.TEN
         );
 
         // Insert
